@@ -1,0 +1,233 @@
+:root{
+  --12-col: 100%;
+  --6-col: 50%;
+  --4-col: 33.3%;
+  --3-col: 25%;
+  --title: 2.1rem;
+  --sub-title: 1.6rem;
+  --paragraph: 1rem;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+}
+h1{
+  font-size: var(--title);
+}
+h2{
+  font-size: var(--sub-title);
+}
+.container{
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 20px 0 20px;
+}
+.pages{
+  width: 100%;
+  max-height: 100vh;
+  min-height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.navBar{
+  width: var(--12-col);
+  height: 80px;
+  position: fixed;
+  padding: 0 20px;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  background-color: beige;
+}
+.navHalf{
+  width: var(--6-col);
+}
+.navUl{
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+}
+.navItem{
+  width: var(--3-col);
+}
+.navLink{
+  display: block;
+  text-decoration: none;
+  font-size: var(--paragraph);
+}
+/* home page start */
+
+.homeIntro{
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+.theName{
+  color: #fc0;
+  font-size: 2.2rem;
+}
+.old{
+  color: #f38;
+  font-size: 2.2rem;
+}
+
+/* home page end */
+
+/* login pages start */
+.loginDiv{
+  width: 310px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loginFrom{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.input{
+  width: 100%;
+  height: 40px;
+  margin: 10px 0 0 0;
+  padding: 10px;
+  border-radius: 3px;
+}
+.btn{
+  width: 40%;
+  height: 25px;
+  margin: 10px auto;
+}
+/* login page end */
+
+/* register pages start */
+.registerDiv{
+  width: 310px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.registerFrom{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* register page end */
+
+/* dashboard page start */
+.productPage{
+  width: 100%;
+  min-height: 720px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 85px 0 0 0;
+}
+
+.productSection{
+  width: 90%;
+}
+.theBoard{
+  width: 100%;
+}
+.productDiv{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  float: left;
+  margin: 18px 0;
+}
+.editBar{
+  width: 65%;
+  height: 35px;
+  padding: 5px 0;
+  border-top: 1px solid rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+/* dashboard page end */
+
+/* product box start */
+
+.theBox{
+  width: 65%;
+  padding: 20px 10px;
+  box-shadow: 0 0 5px rgba(22,22,22,0.5);
+  border-radius: 10px;
+}
+.boxImgDiv{
+  width: 100%;
+  height: 150px;
+  background-color: #eee;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.4);
+  margin: 0 0 20px 0;
+}
+.boxImg{
+  width: 100%;
+  height: 100%;
+}
+.productType{
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.6);
+}
+.productDes{
+  margin: 10px 0;
+}
+
+/* product box end */
+
+/* create icon and create board start*/
+
+.createIcon{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+  background-color: #3f5;
+  color: #fff;
+  font-size: 2.3rem;
+  position: fixed;
+  top: 110px;
+  left: 93%;
+  cursor: pointer;
+}
+.createIcon:hover{
+  background-color: #1d4;
+}
+.createBoardDiv{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255,255,255,0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.createBoard{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+/* create icon and create board end */
+
