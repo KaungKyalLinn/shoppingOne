@@ -4,7 +4,7 @@ const ProductBox = ({product}) => {
   return (
     <div className='theBox'>
       <div className="boxImgDiv">
-        {/* <img src="#" alt="product image" className="boxImg" /> */}
+        <img src={`/upload/${product.img}`} alt="product image" className="boxImg" />
       </div>
 
       <h2 className='productType'>{product.type}</h2>

@@ -1,7 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const app = express();
-const multer = require("multer");
 const dbConnect = require("./db/mongoConnect");
 const {ErrorHandling} = require("./middlewares/errorHandlingMiddleware");
 
@@ -10,8 +9,7 @@ dbConnect();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.urlencoded({extended : false}))
-app.use(express.static("./public/upload/"))
+app.use(express.static("./public"))
 
 // product and admin routes
 app.use("/products",require("./routes/productRoute"));

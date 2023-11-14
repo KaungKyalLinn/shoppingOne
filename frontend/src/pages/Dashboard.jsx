@@ -50,6 +50,7 @@ const Dashboard = () => {
   // edit board show up
   const prepareEdit = (productId) => {
     const productForEdit = products.filter((product) => product._id == productId)
+    console.log("this is product for edit : " + productForEdit);
     setFormCondition(productForEdit[0])
     setCreateBoard(true);
   }

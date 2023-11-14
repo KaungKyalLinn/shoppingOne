@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const fs = require("fs")
 const adminModel = require("../models/adminModel");
 const productModel = require("../models/porductModel");
 
@@ -57,13 +58,15 @@ const adminManage = asyncHandler( async (req,res) => {
     res.status(401)
     throw new Error("your not admin.. please login admin page first ...")
   }
-  const products = await productModel.find();
+  const products = await productModel.find().sort({ createdAt : "descending" });
+  // console.log(products)
   res.json(products)
 })
 
 // posting product
 const adminPost = asyncHandler (async (req,res) => {
-  const {img, type, description, sizes, colors, price, aviliables, showcasing} = req.body;
+  const {type, description, sizes, colors, price, aviliables, showcasing} = req.body;
+  const img = req.file;
 
   if(!img || !type || !description || !sizes || !colors || !price || !aviliables){
     throw new Error("please fill all the fields")
@@ -71,7 +74,7 @@ const adminPost = asyncHandler (async (req,res) => {
 
   if(type && description && sizes && colors && price && aviliables){
     const product = await productModel.create({
-      img,
+      img : img.filename,
       type,
       description,
       sizes,
@@ -89,24 +92,65 @@ const adminPost = asyncHandler (async (req,res) => {
 
 const adminUpdate = asyncHandler(async (req,res) => {
   const product = await productModel.findById(req.params.id);
+  const {type, description, sizes, colors, price, aviliables, showcasing} = req.body;
+  const img = req.file;
+  let currentProduct;
   if(!product){
-    res.status(400).json({massage : "product not found."})
+    res.status(400)
+    throw new Error({massage : "no porduct found...."})
   }
-  if(product){
-    const updateProduct = await productModel.findByIdAndUpdate(req.params.id, req.body, {new : true});
-    res.status(200).json({updateProduct})
-  }else{
-    res.status(401).json({massage : "something went wrong..."})
+  if(product && !img){
+      currentProduct = {
+      type,
+      description,
+      sizes,
+      colors,
+      price,
+      aviliables,
+      showcasing
+    }
   }
+  else if(product && img){
+    fs.unlink("./public/upload/" + product.img, (err) => {
+      if(err){
+        throw new Error(err.massage)
+      }
+      console.log("one image delete from update action...")
+    });
+    currentProduct = {
+      img : img.filename,
+      type,
+      description,
+      sizes,
+      colors,
+      price,
+      aviliables,
+      showcasing
+    }
+  }
+  else{
+    res.status(401)
+    throw new Error({massage : "some went worng...."})
+  }
+  const updateProduct = await productModel.findByIdAndUpdate(req.params.id, currentProduct, {new : true});
+  res.status(200).json({updateProduct})
 })
 
 const adminDelete = asyncHandler(async (req,res) => {
+  console.log("one request received... ")
   const theId = req.params.id;
-  const makeSure = productModel.findById(theId);
+  const makeSure = await productModel.findById(theId);
+  console.log(makeSure.img)
   if(!makeSure){
     res.status(400)
     throw new Error("product not found")
   }
+  fs.unlink("./public/upload/"+ makeSure.img, (err) => {
+    if(err){
+      throw new Error(err.message)
+    }
+    console.log("one image deleted...")
+  })
   await productModel.findByIdAndDelete(theId);
   res.status(200).json("delete success")
 })

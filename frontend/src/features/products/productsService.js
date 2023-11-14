@@ -26,14 +26,14 @@ const createProduct = async (product, token) => {
 
 }
 
-const editProduct = async (product, token) => {
+const editProduct = async (product, id, token) => {
   const config = {
     headers : {
       Authorization : `Bearer ${token}`
     }
   }
 
-  const response = await axios.put(url + "edit/" + product._id, product, config);
+  const response = await axios.put(url + "edit/" + id, product, config);
   return response.data;
 
 }
@@ -45,6 +45,7 @@ const deleteProduct = async (productId,token) => {
     }
   }
 
+  console.log(productId)
   const response = await axios.delete(url + "edit/" + productId, config);
   return response.data;
 }

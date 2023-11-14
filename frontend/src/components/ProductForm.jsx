@@ -4,11 +4,11 @@ import { createProduct, editProduct } from "../features/products/productsSlice";
 
 const ProductForm = ({condition}) => {
 
-  const {massage} = useSelector((state) => state.products)
+  const [theImg, setTheImg] = useState(condition === null ? (null) : ("/upload/" + condition.img));
+  const [imgForUpload, setImgForUpload] = useState(null);
 
   const [theProduct, setTheProduct] = useState(condition === null ? (
     {
-      img : "",
       type: "",
       description : "",
       sizes: "",
@@ -28,14 +28,41 @@ const ProductForm = ({condition}) => {
     }))
   }
 
+  const imgChange = (e) => {
+    const fileReader = new FileReader();
+    const imgFile = e.target.files[0];
+    setImgForUpload(imgFile)
+    fileReader.onload = (data) => {
+      setTheImg(data.target.result)
+    }
+    fileReader.readAsDataURL(imgFile)
+  }
+
   const createNewProduct = () => {
-    const product = theProduct;
+    const formData = new FormData();
+    formData.append("type", theProduct.type)
+    formData.append("description", theProduct.description)
+    formData.append("sizes", theProduct.sizes)
+    formData.append("colors", theProduct.colors)
+    formData.append("price", theProduct.price)
+    formData.append("aviliables", theProduct.aviliables)
+    formData.append("theImg", imgForUpload)
     
-    dispatch(createProduct(product))
+    dispatch(createProduct(formData))
   }
 
   const productEditing = () => {
-    dispatch(editProduct(theProduct))
+    const formData = new FormData();
+    formData.append("type", theProduct.type)
+    formData.append("description", theProduct.description)
+    formData.append("sizes", theProduct.sizes)
+    formData.append("colors", theProduct.colors)
+    formData.append("price", theProduct.price)
+    formData.append("aviliables", theProduct.aviliables)
+    formData.append("theImg", imgForUpload)
+    const product = {formData,theId : theProduct._id}
+
+    dispatch(editProduct(product))
   }
   
   const formSubmit = (e) => {
@@ -50,8 +77,9 @@ const ProductForm = ({condition}) => {
 
   return (
     <div className="createBoardDiv">
-      <form onSubmit={formSubmit} className="createBoard" encType="multipart/form-data">
-        <input type="file" name="img" className="img" onChange={onChange}/>
+      <form onSubmit={formSubmit} className="createBoard">
+        {theImg && <img src={theImg} className="theImg" />}
+        <input type="file" name="img" className="img" onChange={imgChange}/>
         <input type="text" name="type" className="input" placeholder="product type" value={theProduct.type} onChange={onChange}/>
         <input type="text" name="description" className="input" placeholder="product description" value={theProduct.description} onChange={onChange}/>
         <input type="text" name="sizes" className="input" placeholder="product sizes" value={theProduct.sizes} onChange={onChange}/>

@@ -22,6 +22,7 @@ export const dashboard = createAsyncThunk("products/dashboard", async (token, Th
 export const createProduct = createAsyncThunk("products/createProduct", async (product, ThunkAPI) => {
   try{
     const token = ThunkAPI.getState().admin.adminUser.token;
+    console.log(token)
     return await productManagement.createProduct(product, token);
   }
   catch(err){
@@ -53,7 +54,7 @@ export const deleteProduct = createAsyncThunk("products/deleteProduct", async (d
 export const editProduct = createAsyncThunk("products/update", async (product,ThunkAPI) => {
   try{
     const token = ThunkAPI.getState().admin.adminUser.token;
-    return await productManagement.editProduct(product, token)
+    return await productManagement.editProduct(product.formData, product.theId, token);
   }
   catch(err){
     const massage = err.massage || err.toString() || (err.response && err.response.data && err.response.data.massage);
@@ -94,7 +95,7 @@ export const productsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.products.push(action.payload);
-        state.massage = "one product created..."
+        state.massage = "one product created..." + String(Math.random() * 10);
       })
       .addCase(createProduct.rejected , (state, action) => {
         state.isLoading = false;
@@ -132,7 +133,7 @@ export const productsSlice = createSlice({
       .addCase(editProduct.fulfilled , (state) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.massage = "product successful edit";
+        state.massage = "product edit success" + String(Math.random() * 10);
       })
       .addCase(editProduct.rejected , (state, action) => {
         state.isLoading = false;
