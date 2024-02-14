@@ -62,15 +62,13 @@ const Register = () => {
   }
 
   return (
-    <div className='pages'>
+    <div className='pages registerPage'>
       <div className="registerDiv">
-        <div className="registerHeaderDiv">
-          <h2 className="registerHeader">Register admin account</h2>
-        </div>
+        <h1 className="registerHeader">Register admin account</h1>
         <form className="registerForm" onSubmit={onSubmit}>
           <input type="text" className="input userName" name='userName' required placeholder='User name' value={user.userName} onChange={onChange}/>
-          <input type="text" className="input password" name="password" required placeholder='Password' value={user.password} onChange={onChange}/>
-          <input type="text" className="input password2" name="password2" required placeholder='confirm password' value={user.password2} onChange={onChange}/>
+          <input type="password" className="input password" name="password" required placeholder='Password' value={user.password} onChange={onChange}/>
+          <input type="password" className="input password2" name="password2" required placeholder='confirm password' value={user.password2} onChange={onChange}/>
           <button className="btn registerBtn">Register</button>
         </form>
       </div>

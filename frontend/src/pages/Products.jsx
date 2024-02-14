@@ -6,15 +6,15 @@ import ProductBox from "../components/ProductBox";
 const Products = () => {
 
   const dispatch = useDispatch();
-  const { products, isLoading, isSuccess, isError, massage } = useSelector((state) => state.products )
+  const { products, isLoading } = useSelector((state) => state.products )
 
   useEffect(() => {
     dispatch(getProduct())
-  },[dispatch])
+  },[dispatch]);
 
   if(isLoading) {
     return(
-      <div className="pages">
+      <div className="centerPage">
         <div>Loading porducts ...</div>
       </div>
     )
@@ -26,11 +26,11 @@ const Products = () => {
         <div className="productSection">
           {(
             products.length === 0 ? (
-              <div className="productTitleDiv">
-                <h1 className="productTitle">There's no products yet</h1>
+              <div className="noProductDiv">
+                <h1 className="noProduct">There's no products yet</h1>
               </div>
             ) : (
-              <div className="theBoard">
+              <div className="theProduct">
                 {(
                   products.map((product) => (
                     <div className="productDiv" key={product._id}>

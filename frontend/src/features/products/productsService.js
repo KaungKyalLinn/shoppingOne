@@ -21,7 +21,7 @@ const createProduct = async (product, token) => {
       Authorization : `Bearer ${token}`
     }
   }
-  const response = await axios.post(url + "/post", product, config);
+  const response = await axios.post(url + "post", product, config);
   return response.data;
 
 }

@@ -3,17 +3,22 @@
   --6-col: 50%;
   --4-col: 33.3%;
   --3-col: 25%;
-  --title: 2.1rem;
-  --sub-title: 1.6rem;
-  --paragraph: 1rem;
+  --title: 2.2rem;
+  --sub-title: 1.7rem;
+  --paragraph: 1.3rem;
+  --primary-color: #C69774;
+  --secondary-color: #fff;
+  --assend-color-1: rgba(210, 160, 130, 0.5);
 }
-
+body{
+  background-color: var(--primary-color);
+}
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
-  color: #222;
+  color: var(--secondary-color);
 }
 h1{
   font-size: var(--title);
@@ -21,21 +26,49 @@ h1{
 h2{
   font-size: var(--sub-title);
 }
+p{
+  font-size: var(--paragraph);
+}
 .container{
-  max-width: 1380px;
+  max-width: 100vw;
   margin: 0 auto;
-  padding: 0 20px 0 20px;
 }
 .pages{
   width: 100%;
-  max-height: 100vh;
-  min-height: 720px;
+  height: 100vh;
+}
+.centerPage{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer{
+  width: 100%;
+  height: 300px;
+  background-color: var(--assend-color-1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
+.btn{
+  width: 120px;
+  height: 40px;
+  background-color: rgba(0, 0, 255, 0.5);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color: rgba(0, 0, 155, 0.5);
+}
+.btn:active{
+  background-color: rgba(0, 0, 211, 0.5);
+}
+/* navbar start */
 .navBar{
   width: var(--12-col);
   height: 80px;
@@ -45,7 +78,9 @@ h2{
   left: 0;
   display: flex;
   align-items: center;
-  background-color: beige;
+  background-color: var(--assend-color-1);
+  box-shadow: 2px 0 5px #333;
+  z-index: 5;
 }
 .navHalf{
   width: var(--6-col);
@@ -61,177 +96,449 @@ h2{
 .navLink{
   display: block;
   text-decoration: none;
-  font-size: var(--paragraph);
+  font-size: 1rem;
 }
+.burger{
+  width: 70px;
+  height: 70px;
+  display: none;
+}
+.burgerItem{
+  width: 70%;
+  height: 12%;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  transition: transform 500ms ease-out;
+}
+/* navbar end */
+
 /* home page start */
-
-.homeIntro{
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+.homeHeroPage{
+  background-image: url("./images/shop_one.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
 }
-.theName{
-  color: #fc0;
-  font-size: 2.2rem;
-}
-.old{
-  color: #f38;
-  font-size: 2.2rem;
-}
-
-/* home page end */
-
-/* login pages start */
-.loginDiv{
-  width: 310px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.loginFrom{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.input{
-  width: 100%;
-  height: 40px;
-  margin: 10px 0 0 0;
-  padding: 10px;
-  border-radius: 3px;
-}
-.btn{
-  width: 40%;
-  height: 25px;
-  margin: 10px auto;
-}
-/* login page end */
-
-/* register pages start */
-.registerDiv{
-  width: 310px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.registerFrom{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-/* register page end */
-
-/* dashboard page start */
-.productPage{
-  width: 100%;
-  min-height: 720px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 85px 0 0 0;
-}
-
-.productSection{
-  width: 90%;
-}
-.theBoard{
-  width: 100%;
-}
-.productDiv{
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  float: left;
-  margin: 18px 0;
-}
-.editBar{
-  width: 65%;
-  height: 35px;
-  padding: 5px 0;
-  border-top: 1px solid rgba(0,0,0,0.2);
-  display: flex;
-  justify-content: end;
-  gap: 10px;
-}
-
-/* dashboard page end */
-
-/* product box start */
-
-.theBox{
-  width: 65%;
-  padding: 20px 10px;
-  box-shadow: 0 0 5px rgba(22,22,22,0.5);
-  border-radius: 10px;
-}
-.boxImgDiv{
-  width: 100%;
-  height: 210px;
-  background-color: #eee;
-  border-radius: 5px;
-  border: 1px solid rgba(0,0,0,0.4);
-  margin: 0 0 20px 0;
-}
-.boxImg{
-  width: 100%;
-  height: 100%;
-}
-.productType{
-  padding: 5px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.6);
-}
-.productDes{
-  margin: 10px 0;
-}
-
-/* product box end */
-
-/* create icon and create board start*/
-
-.createIcon{
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: none;
-  box-shadow: 0 0 5px rgba(0,0,0,0.4);
-  background-color: #3f5;
-  color: #fff;
-  font-size: 2.3rem;
-  position: fixed;
-  top: 110px;
-  left: 93%;
-  cursor: pointer;
-}
-.createIcon:hover{
-  background-color: #1d4;
-}
-.createBoardDiv{
+.hHHeaderDiv{
   width: 100vw;
-  min-height: 100vh;
-  background-color: rgba(255,255,255,0.6);
+  height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.createBoard{
-  width: 300px;
+.hHBlendDiv{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(100, 100, 100, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  mix-blend-mode: multiply;
+}
+.heroIntro{
+  font-size: 3.3rem;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+.theName{
+  color: #fcd2da;
+}
+.homeBodyOne, .homeBodyTwo, .homeBodyThree{
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
+  padding: 0 8%;
+}
+.homeBodyHalf{
+  width: var(--6-col);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+.theImgDiv{
+  width: 400px;
+  height: 280px;
+  background-color: black;
 }
 .theImg{
-  width: 99%;
+  width: 100%;
+  height: 100%;
+}
+.inspirationDiv{
+  width: 100%;
   height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* home page end */
+
+/* products page start */
+.productPage{
+  width: 100vw;
+}
+.productSection{
+  width: 100%;
+}
+.noProductDiv{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.theProduct{
+  width: 100%;
+  margin: 70px 0 0 0;
+}
+.productDiv{
+  width: var(--6-col);
+  height: 320px;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+}
+.productBox{
+  width: 80%;
+  height: 80%;
+  display: flex;
+  background-color: var(--assend-color-1);
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+}
+.productBoxHalf{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.productAdj{
+  width: 200px;
+  height: 80%;
+}
+.productImgDiv{
+  width: 200px;
+  height: 140px;
+  margin: 0 0 5px 0;
+}
+.productImg{
+  width: 100%;
+  height: 100%;
+}
+.productDes{
+  padding: 5px 0;
+  border-bottom: 1px solid var(--secondary-color) ;
+}
+/* products page end */
+
+/* login and register page start */
+.loginPage, .registerPage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginDiv, .registerDiv{
+  width: 400px;
+}
+.loginHeader, .registerHeader{
+  text-align: center;
+  padding: 20px;
+}
+.loginForm, .registerForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px
+}
+.input{
+  width: 100%;
+  padding: 10px 20px;
+  background-color: var(--secondary-color);
+  color: black;
+  border: none;
+}
+/* login and register page end */
+
+/* dashboard start */
+.dashboardSection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 70px 0 0 0;
+}
+.productBoard{
+  width: 100%;
+}
+.manageProductDiv{
+  width: var(--6-col);
+  height: 320px;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+}
+.createIcon{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: rgba(0, 255, 100, 0.7);
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  left: 85%;
+}
+.createIcon:hover{
+  background-color: rgba(0, 200, 100, 0.7);
+}
+.createIcon:active{
+  background-color: rgba(220, 100, 0.7);
+}
+.editBar{
+  width: 70%;
+  text-align: right;
+  padding: 10px 0;
+}
+.icon{
+  background-color: #333;
+  border: none;
+  padding: 4px;
+  margin: 0 4px 0 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.icon:hover{
+  background-color: #222;
+}
+.icon:active{
+  background-color: #333;
+}
+.createBoardDiv{
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 0 0 30px;
+}
+.createBoard{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+.createHalf{
+  width: var(--6-col);
+  padding: 20px;
+}
+.createLeft{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.createRight{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.createImgDiv{
+  width: 400px;
+  height: 270px;
+  border: 1px solid var(--secondary-color);
+}
+.productInput{
+  width: 80%;
+  padding: 10px 20px;
+  color: black;
+}
+/* dashboard end */
+
+/* about page start */
+.aboutPage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.aboutTitle, .aboutPara{
+  text-align: center;
+}
+.aboutPara{
+  margin: 40px 0 0 0;
+  padding: 0 40px;
+}
+/* about page end */
+
+@media screen and (max-width: 1150px) and (min-width: 921px) {
+  .homeBodyHalf{
+    padding: 20px;
+  }
+  .theImgDiv{
+    width: 330px;
+    height: 220px;
+  }
+  /*product page responsive start*/
+  .productImgDiv{
+    width: 180px;
+    height: 130px;
+    margin: 0 0 10px 0;
+  }
+  /*product page responsive end*/
+  /*dashboard page responsive start*/
+  .manageProductDiv{
+    padding: 10px 0;
+  }
+  .createImgDiv{
+    width: 340px;
+    height: 240px;
+    border: 1px solid var(--secondary-color);
+  }
+  /*dashboard page responsive end*/
 }
 
-/* create icon and create board end */
+@media screen and (max-width: 920px){
+  /*nav responsive start*/
+  .navHalfRight{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .navUl{
+    width: 400px;
+    height: 500px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 10px 20px 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background-color: rgba(210, 160, 130, 0.8);
+    transition: transform 500ms ease-out;
+    transform: translateX(400px);
+  }
+  .swipNavUl{
+    transform: translateX(0px);
+  }
+  .navLink{
+    width: 100%;
+    padding: 20px 30px;
+  }
+  .navLink:hover{
+    background-color: rgba(0,0,0,0.3);
+  }
+  .burger{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    cursor: pointer;
+  }
+  .animateBIOne{
+    transform: rotate(45deg) scale(0.9);
+  }
+  .animateBITwo{
+    transform: scale(0);
+  }
+  .animateBIThree{
+    transform: rotate(-45deg) scale(0.9);
+  }
+  /*nav responsive end*/
+  /*home page responsive start*/
+  .homeBodyOne, .homeBodyTwo, .homeBodyThree{
+    height: 680px;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .homeBodyHalf{
+    --6-col : 100%;
+    height: unset;
+    padding: 0;
+  }
+  .homeBodyText{
+    text-align: center;
+    padding: 30px 40px;
+  }
+  .hBOneLeft, .hBTwoLeft, .hBThreeLeft{
+    align-items: flex-end;
+    height: unset;
+  }
+  .hBOneRight, .hBTwoRight, .hBThreeRight{
+    align-items: flex-start;
+    height: unset;
+  }
+  .footer p{
+    text-align: center;
+  }
+  /*home page responsive end*/
+  /* product page responsive start */
+  .productDiv{
+    --6-col: 100%;
+  }
+  /* product page responsive end */
+  /* dashboard page responsive start */
+  .manageProductDiv{
+    --6-col : 100%;
+  }
+  .createBoard{
+    flex-direction: column;
+    align-items: center;
+  }
+  .createBoardDiv{
+    height: 160vh;
+  }
+  .createImgDiv{
+    width: 340px;
+    height: 240px;
+    border: 1px solid var(--secondary-color);
+  }
+  .createHalf{
+    --6-col : 100%;
+  }
+  /* dashboard page responsive end */
+}
 
+@media screen and (max-width: 500px) and (min-width: 280px){
+  .navUl{
+    width: 250px;
+  }
+  .productDiv{
+    height: 600px;
+  }
+  .productBox{
+    flex-direction: column;
+    padding: 0 10px;
+  }
+  .productBoxHalf{
+    width: 100%;
+  }
+  .manageProductDiv{
+    height: 600px;
+  }
+  .createImgDiv{
+    width: 200px;
+    height: 135px;
+  }
+}

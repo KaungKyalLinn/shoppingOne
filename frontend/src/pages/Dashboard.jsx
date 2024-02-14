@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
-import { resetProduct, dashboard, deleteProduct } from "../features/products/productsSlice";
+import { dashboard, deleteProduct } from "../features/products/productsSlice";
 import ProductBox from "../components/ProductBox";
 import { FaEdit, FaTrash } from "react-icons/fa"
 import ProductForm from "../components/ProductForm";
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   // edit board show up
   const prepareEdit = (productId) => {
-    const productForEdit = products.filter((product) => product._id == productId)
+    const productForEdit = products.filter((product) => product._id === productId)
     console.log("this is product for edit : " + productForEdit);
     setFormCondition(productForEdit[0])
     setCreateBoard(true);
@@ -57,7 +57,7 @@ const Dashboard = () => {
 
   if(isLoading){
     return(
-      <div className="pages">
+      <div className="centerPage">
         <div>loading ...</div>
       </div>
     )
@@ -65,7 +65,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="productPage">
+      <div className="pages dashboardPage">
 
         <button className="createIcon" onClick={()=> {setCreateBoard(true)}}>
           +
@@ -75,22 +75,22 @@ const Dashboard = () => {
           <ProductForm condition={formCondition}/>
         )}
 
-        <div className="productSection">
+        <div className="dashboardSection">
           {(
             products.length === 0 ? (
               <div className="productTitleDiv">
                 <h1 className="productTitle">There's no products yet</h1>
               </div>
             ) : (
-              <div className="theBoard">
+              <div className="productBoard">
                 {(
                   products.map((product) => (
-                    <div className="productDiv" key={product._id}>
+                    <div className="manageProductDiv" key={product._id}>
                       <div className="editBar">
-                        <button onClick={() => {prepareEdit(product._id)}}>
+                        <button className="icon" onClick={() => {prepareEdit(product._id)}}>
                           <FaEdit />
                         </button>
-                        <button onClick={() => {deleteTheProduct(product._id)}}>
+                        <button className="icon" onClick={() => {deleteTheProduct(product._id)}}>
                           <FaTrash />
                         </button>
                       </div>

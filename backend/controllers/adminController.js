@@ -8,8 +8,6 @@ const productModel = require("../models/porductModel");
 
 const adminRegister = asyncHandler(async (req,res) => {
   const {userName, password} = req.body;
-  console.log("user name : " + userName);
-  console.log("password : " + password)
 
   if(!userName || !password){
     res.status(400)
@@ -40,13 +38,14 @@ const adminLogin = asyncHandler (async (req,res) => {
   const user = await adminModel.findOne({name : userName});
 
   if(!user){
+    res.status(401)
     throw new Error("this user not exist")
   }
 
   if(user && await bcrypt.compare(password, user.password)){
     res.json({
-      name: user.userName,
-      token : tokenGenerate(user.id)
+      name: user.name,
+      token : tokenGenerate(user._id)
     })
   }else{
     throw new Error("wrong password")
@@ -137,10 +136,8 @@ const adminUpdate = asyncHandler(async (req,res) => {
 })
 
 const adminDelete = asyncHandler(async (req,res) => {
-  console.log("one request received... ")
   const theId = req.params.id;
   const makeSure = await productModel.findById(theId);
-  console.log(makeSure.img)
   if(!makeSure){
     res.status(400)
     throw new Error("product not found")
@@ -149,7 +146,6 @@ const adminDelete = asyncHandler(async (req,res) => {
     if(err){
       throw new Error(err.message)
     }
-    console.log("one image deleted...")
   })
   await productModel.findByIdAndDelete(theId);
   res.status(200).json("delete success")

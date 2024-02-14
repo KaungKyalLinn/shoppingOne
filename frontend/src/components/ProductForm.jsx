@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createProduct, editProduct } from "../features/products/productsSlice";
 
 const ProductForm = ({condition}) => {
@@ -78,16 +78,22 @@ const ProductForm = ({condition}) => {
   return (
     <div className="createBoardDiv">
       <form onSubmit={formSubmit} className="createBoard">
-        {theImg && <img src={theImg} className="theImg" />}
-        <input type="file" name="img" className="img" onChange={imgChange}/>
-        <input type="text" name="type" className="input" placeholder="product type" value={theProduct.type} onChange={onChange}/>
-        <input type="text" name="description" className="input" placeholder="product description" value={theProduct.description} onChange={onChange}/>
-        <input type="text" name="sizes" className="input" placeholder="product sizes" value={theProduct.sizes} onChange={onChange}/>
-        <input type="text" name="colors" className="input" placeholder="product colors" value={theProduct.colors} onChange={onChange}/>
-        <input type="text" name="price" className="input" placeholder="product price" value={theProduct.price} onChange={onChange}/>
-        <input type="text" name="aviliables" className="input" placeholder="product aviliables" value={theProduct.aviliables} onChange={onChange}/>
+        <div className="createHalf createLeft">
+          <div className="createImgDiv">
+            {theImg && <img src={theImg} className="theImg" alt="productImg" />}
+          </div>
+          <input type="file" name="img" className="img" onChange={imgChange}/>
+          <input type="text" name="type" className="productInput" placeholder="product type" value={theProduct.type} onChange={onChange}/>
+        </div>
+        <div className="createHalf createRight">
+          <input type="text" name="description" className="productInput" placeholder="product description" value={theProduct.description} onChange={onChange}/>
+          <input type="text" name="sizes" className="productInput" placeholder="product sizes" value={theProduct.sizes} onChange={onChange}/>
+          <input type="text" name="colors" className="productInput" placeholder="product colors" value={theProduct.colors} onChange={onChange}/>
+          <input type="text" name="price" className="productInput" placeholder="product price" value={theProduct.price} onChange={onChange}/>
+          <input type="text" name="aviliables" className="productInput" placeholder="product aviliables" value={theProduct.aviliables} onChange={onChange}/>
 
-        <button className="btn">{condition ? ("edit") : ("create")}</button>
+          <button className="btn">{condition ? ("edit") : ("create")}</button>
+        </div>
       </form>
     </div>
   )

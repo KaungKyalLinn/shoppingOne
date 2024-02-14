@@ -21,8 +21,6 @@ const Login = () => {
     if(isSuccess || adminUser){
       navigate("/admin/dashboard")
     }
-    dispatch(reset())
-
   }
   ,[adminUser, isSuccess, isError, massage, dispatch, navigate])
 
@@ -52,21 +50,19 @@ const Login = () => {
 
   if(isLoading){
     return(
-      <div>
+      <div className="centerPage">
         <div>Loading ...</div>
       </div>
     )
   }
 
   return (
-    <div className='pages'>
+    <div className='pages loginPage'>
       <div className="loginDiv">
-        <div className="loginHeaderDiv">
-          <h2 className="loginHeader">Login admin account</h2>
-        </div>
+        <h1 className="loginHeader">Login admin account</h1>
         <form className="loginForm" onSubmit={onSubmit}>
-          <input type="text" className="input userName" name='userName' placeholder='User name' value={user.userName} onChange={onChange}/>
-          <input type="text" className="input password" name="password" placeholder='Password' value={user.password} onChange={onChange}/>
+          <input type="text" required className="input userName" name='userName' placeholder='User name' value={user.userName} onChange={onChange}/>
+          <input type="password" required className="input password" name="password" placeholder='Password' value={user.password} onChange={onChange}/>
           <button className="btn loginBtn">Login</button>
         </form>
       </div>
