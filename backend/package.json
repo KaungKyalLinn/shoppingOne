@@ -4,7 +4,8 @@
   "description": "this is first experience ecomarce test project",
   "main": "server.js",
   "scripts": {
-    "serve": "nodemon server.js"
+    "serve": "nodemon server.js",
+    "activate": "npm i && npm i --prefix ../frontend && npm run build --prefix ../frontend"
   },
   "author": "Kaung Kyal Linn",
   "license": "ISC",
